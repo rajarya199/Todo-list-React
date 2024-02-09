@@ -59,11 +59,49 @@ width:250px;
   flex-direction: column;
 }
  .list-items{
-  display:flex;
-  background-color: #414040;
+ display:flex;
+background-color: #414040;
 padding:25px;
+padding-top: 10px;
+padding-bottom: 10px;
 margin-bottom: 10px;
 box-shadow: 0px 2px 4px rgb(39, 38, 38);
+justify-content: space-between;
+align-items: center;
+ }
 
+ .list-items p{
+  margin-top:6px;
+  font-size: 14px;
+  color: rgb(179, 178, 178);
 
  }
+
+ .list-items h2{
+  font-size: 25px;
+  color: rgb(25, 186, 111);
+font-weight: bold;
+margin:0px
+ }
+
+ .dlt-btn{
+  font-size: 35px;
+  cursor: pointer;
+  
+}
+
+.dlt-btn:hover{
+  color: red;
+
+}
+.check-btn{
+  font-size: 22px;
+  cursor: pointer;
+  color: rgb(0, 230, 122);
+  margin-bottom: 5px;
+  margin-right:10px;
+}
+
+.check-btn:hover{
+  color: rgb(4, 192, 104);
+}

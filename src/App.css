@@ -105,3 +105,7 @@ margin:0px
 .check-btn:hover{
   color: rgb(4, 192, 104);
 }
+.upbox{
+  display: flex;
+  align-items: center;
+}

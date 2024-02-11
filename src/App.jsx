@@ -10,23 +10,24 @@ const App = () => {
   const[task,setTask]=useState([])
   
   useEffect(()=>{
+    //json to object
     let savedTodos=JSON.parse (localStorage.getItem ('todoData'))
+    //if saved in storage retrive 
     if(savedTodos){
       setTask(savedTodos)
     }
   },[])
   const addTodo=()=>{
-    if(title.trim() !== "" && desc.trim() !== "") 
-    //check if user enter only space
+    if(title.trim() !== "" && desc.trim() !== "") //check if user enter only space
+    
     // if(title.length>0 && desc.length>0 )
 
     {
-      let newTask=[...task,{title,desc}]
+      let newTask=[...task,{title,desc}]  // without changing past state, update new state
       setTask(newTask) 
-        // without changing past state, update new state
-
-       localStorage.setItem ('todoData', JSON.stringify (newTask));
        
+       localStorage.setItem ('todoData', JSON.stringify (newTask));
+       //object to json
       setTitle("");
       setDesc("");
     }
@@ -69,19 +70,22 @@ if(task.length>0){
 }
 const handleDelete=(i)=>{
   let reducetask=[...task]
-  reducetask.splice(i,1)
-  localStorage.setItem ('todoData', JSON.stringify (reducetask));
+  reducetask.splice(i,1) //remove task at i ---splice(start, how many)
+
+  localStorage.setItem ('todoData', JSON.stringify (reducetask)); //update storage after delete
   setTask(reducetask)
 }
 
 const handleUpdate=(i)=>{
   const updatedTitle=prompt("enter updated title:")
 const updatedDesc=prompt("enter updated description:")
+
 if(updatedTitle.trim() !== "" && updatedDesc.trim() !== ""){
-  if(confirm('Do you want to update this task?')){
+  if(confirm('Do you want to update this task?'))
+  {
   const updatedTask=[...task];
   updatedTask[i]={title:updatedTitle,desc:updatedDesc};
-  localStorage.setItem ('todoData', JSON.stringify (updatedTask));
+  localStorage.setItem ('todoData', JSON.stringify (updatedTask)); //store the update value of task(i)
 
   setTask(updatedTask);
   }

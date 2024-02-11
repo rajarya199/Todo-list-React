@@ -8,25 +8,34 @@ const App = () => {
   const[title,setTitle]= useState("")
   const[desc,setDesc]=useState("")
   const[task,setTask]=useState([])
-
   
-
+  useEffect(()=>{
+    let savedTodos=JSON.parse (localStorage.getItem ('todoData'))
+    if(savedTodos){
+      setTask(savedTodos)
+    }
+  },[])
   const addTodo=()=>{
     if(title.trim() !== "" && desc.trim() !== "") 
     //check if user enter only space
     // if(title.length>0 && desc.length>0 )
 
     {
-      setTask([...task,{title,desc}]) 
-      // without changing past state, update new state
+      let newTask=[...task,{title,desc}]
+      setTask(newTask) 
+        // without changing past state, update new state
+
+       localStorage.setItem ('todoData', JSON.stringify (newTask));
+       
       setTitle("");
       setDesc("");
     }
     else{
       alert('Enter todo task')
     }
-  
   }
+  
+ 
 
   let showTask=<h2>No task available</h2>
 if(task.length>0){
@@ -61,6 +70,7 @@ if(task.length>0){
 const handleDelete=(i)=>{
   let reducetask=[...task]
   reducetask.splice(i,1)
+  localStorage.setItem ('todoData', JSON.stringify (reducetask));
   setTask(reducetask)
 }
 
@@ -71,6 +81,8 @@ if(updatedTitle.trim() !== "" && updatedDesc.trim() !== ""){
   if(confirm('Do you want to update this task?')){
   const updatedTask=[...task];
   updatedTask[i]={title:updatedTitle,desc:updatedDesc};
+  localStorage.setItem ('todoData', JSON.stringify (updatedTask));
+
   setTask(updatedTask);
   }
 }
